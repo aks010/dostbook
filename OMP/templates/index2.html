@@ -1,0 +1,14 @@
+{% load staticfiles %}
+{% static "" as baseUrl %}
+<html>
+<body>
+<audio controls='controls' autoplay='autoplay'>
+
+
+<source src="{{baseUrl}}songs/hollywood/{{mname}}" type="audio/mp3">
+<source src="{{baseUrl}}songs/bollywood/{{mname}}/{{sname}}" type="audio/mp3">
+</audio>
+
+
+</body>
+</html>

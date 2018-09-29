@@ -1,0 +1,161 @@
+{% load staticfiles %}
+{% static "" as baseUrl %}
+
+<html>
+<head>
+  <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <meta name="HandheldFriendly" content="true">
+  <title>dostbook</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+  <link rel="stylesheet" href="{{baseUrl}}css/styles1.css">
+  <link rel="stylesheet" href="{{baseUrl}}css/stylemobile.css">
+  <link rel="shortcut icon" href="">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+</head>
+
+{% block content %}
+<script>
+var x;
+function disp(str)
+{
+   x=new XMLHttpRequest();
+   x.open("GET","ajax1?name="+str,true);
+   x.onreadystatechange=dispres;
+   x.send(null);
+
+}
+function dispres()
+{
+  if(x.readyState==4)
+  document.getElementById("mydiv").innerHTML=x.responseText;
+}
+function disp1(s)
+{
+document.getElementById("find").value=s;
+document.getElementById("mydiv").innerHTML="";
+}
+
+
+</script>
+
+<body>
+<div class="container-fluid ">
+<div class="row">
+<div class="navbar navbar-expand ">
+<div class="col-sm-2">
+  <h1 style="color:white;margin:30px;">DOSTBOOK</h1>
+</div>
+<div class="col-sm-2 col-sm-offset-2 search">
+      <form action="friendrequest">
+            <h3 >Search Friend</h3>
+            <div>
+              <input type="text" class="search" autocomplete="off" id="find" name="search" onkeyup="disp(this.value)" placeholder="Find Friend"/><input type="submit" value="Send Request">
+              <div id="mydiv"></div>
+            </div>
+
+
+
+
+      </form>
+</div>
+<div class="heading col-sm-2 col-sm-offset-1"><h3>Welcome {{request.session.semail}}</h3>
+
+
+<a href='Editprofile'><h4 style="color:white;">Edit Profile</h4</a>
+</div>
+</div>
+</div>
+</div>
+<div class="container-fluid ">
+<br><br>
+<div class="row">
+  <div class="col-sm-2">
+    <table>
+    {%for m in pp %}
+     <tr>
+     <td>{{m.email}}</td>
+     <td><img src="{{baseUrl}}media/{{m.profile_picture}}" class="uploadpic" height="200"></td>
+    {% endfor %}
+    </table>
+    <form action="uploadpic" method="POST" enctype="multipart/form-data">
+            {% csrf_token %}
+
+            <input type="file" name="myfile" /><br/>
+            <input type="submit" name="submit" value="Upload" />
+
+    </form>
+
+
+</div>
+
+  <div class="col-sm-4 col-sm-offset-1">
+    <div class="post">
+      <form action="savepost" method="POST" enctype="multipart/form-data">
+        {% csrf_token %}
+      <textarea rows="5" cols="20" name="msg">
+      </textarea>
+
+    <div>
+     <input type="file" name="myfile1" align="middle"/><br/></div>
+      <input type="submit" name="submit" value="Savepost" />
+
+    </form>
+
+    </div>
+    <br><br>
+
+    <div>
+    {% for a in post %}
+    <div class="viewpost">
+    <h4>{{a.sender}}<br>{{a.msg}}</h4>
+    <img src="{{baseUrl}}media/{{a.post_picture}}" height="200" width="200">
+    </div>
+    <br>
+    {% endfor %}
+    </div>
+
+  </div>
+
+
+  <div class="col-sm-3">
+    <h4>FRIEND REQUEST LIST</h4>
+    {% for b in f %}
+    {{b.sender}}<a href="accept?request={{b.id}}"><input type="button" value="accept"></a><a href="reject?request={{b.id}}"><input type="button" value="reject"></a>
+    {% endfor %}
+
+    <br><br><br>
+
+    <table>
+      <h4>FRIEND LIST</h4>
+      {% for key,value in a.items %}
+      <tr><td>{{value}}</td><td><a href="removefriend?name={{key}}"><input type="button" value="REMOVE"></a></td></tr>
+
+
+      {% endfor %}
+
+    </table>
+
+  </div>
+
+</div>
+
+
+
+
+<br><br><br>
+
+
+</div>
+
+
+
+
+{% endblock %}
+
+
+</body>
+</html>

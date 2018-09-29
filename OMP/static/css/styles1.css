@@ -1,0 +1,59 @@
+/* Tablet Landscape */
+@media screen and (max-width: 1060px) {
+    #primary { width:67%; }
+    #secondary { width:30%; margin-left:3%;}
+}
+/* Tabled Portrait */
+@media screen and (max-width: 768px) {
+    #primary { width:100%; }
+    #secondary { width:100%; margin:0; border:none; }
+}
+.search{
+  text-align: center;
+}
+.heading{
+  margin: 0px;
+}
+.navbar {
+  background: linear-gradient(to top right, #3399ff 0%, #33ccff 100%);
+  text-align: center;
+  max-width: 100%;
+  z-index:2px
+}
+
+body{
+
+background: linear-gradient(to top right, #3399ff 0%, #ffffff 100%);
+
+}
+
+.post{
+
+
+  padding: 20px;
+  text-align: center;
+
+}
+h4{
+  color: blue;
+}
+.uploadpic{
+  width:200px;
+}
+.viewpost{
+    border-radius: 25px;
+    border: 1px solid #190751;
+   padding: 20px;
+   text-align: center}
+textarea{width: 100%;
+    height: 150px;
+    padding: 12px 20px;
+    box-sizing: border-box;
+    border: 2px solid #ccc;
+    border-radius: 20px;
+    background:   linear-gradient(to top right, #3399ff 0%, #ffffff 100%);
+    resize: none;}
+.modify{
+  font-size: 20px;
+  margin: 20px;
+}

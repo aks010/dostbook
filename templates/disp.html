@@ -1,0 +1,9 @@
+{% if a.sender == request.session.semail %}
+<tr><td>{{a.sender}}hello</td><td><a href="removefriend?name={{a.id}}"><input type="button" value="REMOVE"></a></td></tr>
+{% endif %}
+{% endfor %}
+
+{% for a in list %}
+{% if a.receiver==request.session.semail %}
+<tr><td>{{a.receiver}}hello</td><td><a href="removefriend?name={{a.id}}"><input type="button" value="REMOVE"></a></td></tr>
+{% endif %}

@@ -1,0 +1,169 @@
+<!--
+Author: W3layouts
+Author URL: http://w3layouts.com
+License: Creative Commons Attribution 3.0 Unported
+License URL: http://creativecommons.org/licenses/by/3.0/
+-->
+
+{% load staticfiles %}
+{% static "" as baseUrl %}
+<!DOCTYPE html>
+<html>
+<head>
+<title>Register Login Widget Flat Responsive Widget Template :: w3layouts</title>
+<!--Custom Theme files-->
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="keywords" content="Register Login Widget template Responsive, Login form web template,Flat Pricing tables,Flat Drop downs  Sign up Web Templates, Flat Web Templates, Login Signup Responsive web template, SmartPhone Compatible web template, free WebDesigns for Nokia, Samsung, LG, SonyEricsson, Motorola web design" />
+<script type="application/x-javascript"> addEventListener("load", function() { setTimeout(hideURLbar, 0); }, false); function hideURLbar(){ window.scrollTo(0,1); } </script>
+<!-- Custom Theme files -->
+<link href="{{baseUrl}}css/style.css" rel="stylesheet" type="text/css" media="all" />
+<!--web-fonts-->
+<link href='//fonts.googleapis.com/css?family=Jura:400,300,500,600' rel='stylesheet' type='text/css'>
+<!--//web-fonts-->
+</head>
+<script>
+var x;
+function data()
+{
+	var email = document.getElementById("email").value;
+	var pass = document.getElementById("password").value;
+	x=new XMLHttpRequest();
+	x.open("GET","login?uemail="+email+"&upassword="+pass,true);
+	x.onreadystatechange=dispres;
+  x.send(null);
+	console.log("hello");
+}
+function dispres()
+{
+
+if(x.readyState==4)
+{
+
+
+				if(x.responseText=="VALID")
+				{
+				console.log("hello5");
+				location="welcomehome";
+				}
+				else
+				{
+				console.log("hello1");
+			  document.getElementById("log").innerHTML=x.responseText;
+		  	}
+
+}
+}
+var y;
+function save()
+{
+	var email = document.getElementById("emails").value;
+	var name = document.getElementById("names").value;
+	var password = document.getElementById("passwords").value;
+	var city = document.getElementById("citys").value;
+	var gender="Female";
+	var g = document.getElementById("g1");
+	y=new XMLHttpRequest();
+	if(g.checked)
+	gender="Male";
+	y.open("GET","signup?email="+email+"&password="+password+"&city="+city+"&gender="+gender+"&name="+name,true);
+	y.onreadystatechange=dispressave;
+  y.send(null);
+	console.log("hello");
+}
+function dispressave()
+{
+
+if(y.readyState==4)
+{
+
+
+				if(y.responseText=="SUCCESSFULLY SIGNED UP")
+				{
+				console.log("hello5");
+				alert(y.responseText);
+				}
+				else
+				{
+				console.log("hello1");
+			  alert(y.responseText);
+		  	}
+
+}
+}
+</script>
+<body>
+	<h1>Register</h1>
+	<!-- main -->
+	<div class="main">
+		<!--login-profile-->
+
+		<!--login-profile-->
+		<!--signin-form-->
+		<div class="w3">
+			<div class="signin-form profile">
+				<h3>Login</h3>
+
+				<div class="login-form">
+						<form action="">
+						<input type="text" name="uemail" id="email" placeholder="E-mail" autocomplete="off" required/>
+						<input type="password" name="upassword" id="password" placeholder="Password" autocomplete="off" required/>
+						<!-- <input type="submit"	value="LOGIN"> -->
+						<input type="button" onclick="data()" value="LOGIN"/>
+						<span id="log"></span>
+						</form>
+
+				</div>
+				<div class="header-social wthree">
+							<a href="#" class="face"><h5>Facebook</h5></a>
+							<a href="#" class="goog"><h5>Google+</h5></a>
+							<div class="clear"></div>
+						</div>
+				<p><a href="#"> Don't have an account?</a></p>
+			</div>
+		</div>
+		<div class="agile">
+			<div class="signin-form profile">
+				<h3>SignUp</h3>
+
+				<div class="login-form">
+						<form>
+						<input type="text" name="name" placeholder="Name" id="names" autocomplete="off" required />
+						<input type="text" name="email" placeholder="Email" id="emails" autocomplete="off" required />
+						<input type="password" name="password" placeholder="Password" id="passwords" autocomplete="off" required />
+				<div class="body">
+				<div>
+						<h5>Select Gender</h5>
+						<div>
+						<input type="radio" name="gender" value="Male" id="g1">Male
+						<input type="radio" name="gender" value="Female" id="g2">Female
+					</div>
+				</div>
+						<div>
+							<h5>Select city</h5>
+								<div>
+									<select name="city" id="citys">
+										<option value="BE">Bareilly</option>
+										<option>Agra</option>
+									</select>
+								</div>
+						</div>
+					</div>
+						<div class="tp">
+							<input type="button" onclick="save()" value="SIGNUP"/>
+						</div>
+					</form>
+
+
+				</div>
+				<p><a href="#"> By clicking register, I agree to your terms</a></p>
+			</div>
+		</div>
+		<div class="clear"></div>
+		<!--//signin-form-->
+	</div>
+	<div class="copyright">
+		<p> &copy; 2016 Register Login Widget . All rights reserved | Design by <a href="http://w3layouts.com/" target="_blank" >W3layouts</a></p>
+	</div>
+</body>
+</html>
