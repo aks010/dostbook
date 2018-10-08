@@ -6,14 +6,11 @@ import copy
 # Create your views here.
 def newuser(request):
  return render(request,"signup.html")
-
 def signup(request):
-
     s=student()
     email=request.GET.get("email")
     password=request.GET.get("password")
     name=request.GET.get("name")
-
     a=student.objects.filter(email=email)
     if (email=="" or password=="" or name==""):
         return HttpResponse("please fill required field")
@@ -30,7 +27,6 @@ def signup(request):
          # return redirect('home')
 
 def login(request):
-
     uemail=request.GET.get("uemail")
     upassword=request.GET.get("upassword")
     request.session['semail']=uemail
@@ -52,8 +48,6 @@ def welcomehome(request):
     f=friends.objects.filter(receiver=uemail,status=0)
     friendlist=GetFriends(request.session.get('semail'))
     z=friends.objects.filter(Q(sender=uemail)|Q(receiver=uemail ),status=1)
-
-
     list=copy.deepcopy(friendlist)
     friendlist.append(uemail)
     post=viewpost(friendlist)
@@ -62,10 +56,6 @@ def welcomehome(request):
         for bb in list:
             if bb==aa.sender or bb==aa.receiver :
                 a[aa.id]=bb
-
-
-
-
     pp=profpic.objects.filter(emailid=request.session.get('semail'),status=1)
     return render(request,"Welcome.html",{"s":s,"f":f,"a":a,"post":post,"pp":pp})
 
@@ -74,7 +64,6 @@ def welcomehome(request):
 def ajax1(request):
     entry=request.GET.get("name")
     p=student.objects.filter(email__startswith=entry).exclude(email=request.session.get('semail'))
-
     ll="<select size='10' onchange='disp1(this.value)'>"
     for a in p:
         ll=ll+"<option>"+a.email+"</option>"
